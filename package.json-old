@@ -1,0 +1,12 @@
+{
+  "name": "vue-mapbox",
+  "version": "0.0.1",
+  "description": "Mapbox component for Vue.js",
+  "main": "index.js",
+  "repository": "https://github.com/dusansimic/vue-mapbox",
+  "author": "Dušan Simić <dusan.simic1810@gmail.com> (dusansimic.me)",
+  "license": "MIT",
+  "dependencies": {
+    "mapbox-gl": "^0.52.0"
+  }
+}
