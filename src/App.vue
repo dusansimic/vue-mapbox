@@ -1,17 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Mapbox
+      access-token="pk.eyJ1IjoiZHVzYW5zaW1pYyIsImEiOiJjamp1Zm95ZngxNmJ4M3BtaDV2eXM5dm12In0.t4lx-WhB2TDMI-YTdVZqyg"
+      :map-options="{
+        style: 'mapbox://styles/mapbox/streets-v10',
+        center: [19.8532383, 45.2413324],
+        zoom: 15
+      }"
+      :geolocate-control="{
+        show: true,
+        position: 'top-left'
+      }"
+      :scale-control="{
+        show: true,
+        position: 'top-left'
+      }"
+      :fullscreen-control="{
+        show: true,
+        position: 'top-left'
+      }"
+      :markers="[
+        [19.849888, 45.244981],
+        [19.8498394, 45.248725]
+      ]"
+    ></Mapbox>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Mapbox from './components/Mapbox'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Mapbox
   }
 }
 </script>
@@ -23,6 +45,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+#map {
+  text-align: left;
+  width: 100%;
+  height: 100vh;
 }
 </style>
