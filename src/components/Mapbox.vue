@@ -340,7 +340,7 @@ export default {
 
     // Add markers
     if (this.markers) {
-      for (const {location, title, body} of this.markers) {
+      for (const { location, title, body } of this.markers) {
         this.addMarker(map, location, this.addPopup(map, title, body))
       }
     }

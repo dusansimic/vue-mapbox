@@ -1,0 +1,10 @@
+os: linux
+dist: xenial
+language: node_js
+node_js:
+  - '10'
+install:
+  - yarn install
+script:
+  - yarn lint
+  - yarn build-bundle
