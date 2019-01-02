@@ -64,6 +64,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * Initialize map object
+     * @returns {Object} Map object
+     */
     mapInit () {
       // MapboxGL access token
       mapboxgl.accessToken = this.accessToken
@@ -81,6 +85,10 @@ export default {
 
       return map
     },
+    /**
+     * Register map events
+     * @param {Object} map Map object
+     */
     registerEvents (map) {
       // Map loaded
       map.on('load', () => {
@@ -251,6 +259,10 @@ export default {
         this.$emit('map-pitchend', map, e)
       })
     },
+    /**
+     * Add controls to the map
+     * @param {Object} map Map object
+     */
     addControls (map) {
       // Nav control
       if (this.navControl.show) {
@@ -289,12 +301,27 @@ export default {
         map.addControl(fullscreen, this.fullscreenControl.position)
       }
     },
+    /**
+     * Add marker to the map
+     * @param {Object} map Map object
+     * @param {Array} coordinates Coordinates for marker
+     * @param {Object} popup Popup instance
+     */
     addMarker (map, coordinates, popup) {
       const marker = new mapboxgl.Marker().setLngLat(coordinates).setPopup(popup).addTo(map)
       return marker
     },
-    addPopup (map) {
-      const popup = new mapboxgl.Popup().setHTML('<p>Test</p>').addTo(map)
+    /**
+     * Add popup to the map
+     * @param {Object} map Map object
+     * @param {String} title Popup title string
+     * @param {String} body Popup body string
+     */
+    addPopup (map, title, body) {
+      let html = ''
+      if (title) html += `<h3>${title}</h3>`
+      if (body) html += `<p>${body}</p>`
+      const popup = new mapboxgl.Popup().setHTML(html).addTo(map)
       return popup
     }
   },
@@ -313,8 +340,8 @@ export default {
 
     // Add markers
     if (this.markers) {
-      for (const marker of this.markers) {
-        this.addMarker(map, marker, this.addPopup(map))
+      for (const {location, title, body} of this.markers) {
+        this.addMarker(map, location, this.addPopup(map, title, body))
       }
     }
   },
