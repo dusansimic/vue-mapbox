@@ -1,6 +1,6 @@
 {
   "name": "vue2-mapbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Mapbox component for Vue.js",
   "main": "./dist/mapbox.common.js",
   "repository": "https://github.com/dusansimic/vue-mapbox",
