@@ -21,14 +21,16 @@
       }"
       :markers="[
         {
+          options: {
+            color: '#ff0000'
+          },
           location: [19.849888, 45.244981],
-          title: 'IdeaLab',
-          body: '<a href=&quot;/application/sodaq-demo/device/sodaq-maker-2&quot;>path to idealab</a>'
+          popup: {
+            html: '<h3>IdeaLab</h3><a href=&quot;/application/sodaq-demo/device/sodaq-maker-2&quot;>path to idealab</a>'
+          }
         },
         {
-          location: [19.8498394, 45.248725],
-          title: 'Levi9',
-          body: '<a href=&quot;/application/test-novi-sad/device/flipclick1&quot;>path to levi9</a>'
+          location: [19.8498394, 45.248725]
         }
       ]"
     ></Mapbox>

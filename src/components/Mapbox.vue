@@ -305,23 +305,30 @@ export default {
      * Add marker to the map
      * @param {Object} map Map object
      * @param {Array} coordinates Coordinates for marker
+     * @param {Object} options Options for marker
      * @param {Object} popup Popup instance
      */
-    addMarker (map, coordinates, popup) {
-      const marker = new mapboxgl.Marker().setLngLat(coordinates).setPopup(popup).addTo(map)
+    addMarker (map, coordinates, options, popup) {
+      const marker = new mapboxgl.Marker(options).setLngLat(coordinates).setPopup(popup).addTo(map)
       return marker
     },
     /**
      * Add popup to the map
      * @param {Object} map Map object
-     * @param {String} title Popup title string
-     * @param {String} body Popup body string
+     * @param {Object} config Popup config object
      */
-    addPopup (map, title, body) {
-      let html = ''
-      if (title) html += `<h3>${title}</h3>`
-      if (body) html += `<p>${body}</p>`
-      const popup = new mapboxgl.Popup().setHTML(html).addTo(map)
+    addPopup (map, config) {
+      if (!config) {
+        return null
+      }
+      const { html, text, options } = config
+      const popup = new mapboxgl.Popup(options)
+      if (text) {
+        popup.setText(text)
+      } else if (html) {
+        popup.setHTML(html)
+      }
+      popup.addTo(map)
       return popup
     }
   },
@@ -340,8 +347,8 @@ export default {
 
     // Add markers
     if (this.markers) {
-      for (const { location, title, body } of this.markers) {
-        this.addMarker(map, location, this.addPopup(map, title, body))
+      for (const { options, location, popup } of this.markers) {
+        this.addMarker(map, location, options, this.addPopup(map, popup))
       }
     }
   },
